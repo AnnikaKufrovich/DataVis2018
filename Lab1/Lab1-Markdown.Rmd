@@ -1,0 +1,65 @@
+---
+title: "Lab1-MarkDown"
+author: "Annika Kufrovich"
+date: "February 2, 2018"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+  word_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r, echo=FALSE}
+"![Source: Harry Potter Wiki](Hpop.png)
+this kept giving me errors no atter what I did"
+```
+
+##Intro
+The Hollywood Movies data set looks at movies released between 2007 and 2013. Obervations include the studio that released the movie, Rottentomatoes score, Audiences score, General theme, Genre, year of release, and the number of screens showing the film opening week. It also includes financial observations (in millions) of the movies' opening weekend, Domestic gross earnings, Foreign gross earnings, World gross earnings (a combination of the previous two), budget of the movie, profitability, and open profit.
+
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(install.load)
+install_load("mosaic", "ggplot2", "devtools","tidyverse")
+```
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(Lock5Data)
+HollywoodMovies
+```
+
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+kable(HollywoodMovies[1:6, ], caption = "First Rows of HollywoodMovies")
+```
+  
+  
+##Summary of Data
+
+```{r, echo=FALSE}
+summary(HollywoodMovies$Genre)
+summary(HollywoodMovies$Budget)
+summary(HollywoodMovies$DomesticGross)
+HollywoodMovies %>%
+  group_by(Genre) %>%
+    summarize(mean(Budget))
+HollywoodMovies %>%
+  group_by(Genre) %>%
+    summarize(mean(DomesticGross))
+```
+
+The three variables we'll be looking at are Genre, Budget, and Domestic Gross earning, with the latter 2 in millions. Of the 970 movies recorded, 279 were not assigned a Genre while all others were assigned to one of 14 Genres, however some of the Genres have less than 10 entries which may make them difficult to compare those groups to other genres. With only 73 NA Budget entries this variable should be easy to work with but causes a few NA averages when movies were grouped by Genre. The average DomesticGross Income overall was `r mean(HollywoodMovies$DomesticGross)` and there appear to be no missing values in Domestic Gross income making it easy to use.
+
+
+```{r, echo=FALSE}
+ggplot(HollywoodMovies,aes(x=Budget))+geom_dotplot(binwidth = .5)+facet_grid(Genre~.)
+ggplot(HollywoodMovies,aes(x=DomesticGross))+geom_dotplot(binwidth = .75)+facet_grid(Genre~.)
+```
+
+##Conclusion
+There definitely appear to be differences between roup however due to lack of some data entries and underrepresented Genres, there are limits to what groups can be compared.  

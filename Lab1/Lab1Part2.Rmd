@@ -1,0 +1,52 @@
+---
+title: "Lab1Part2"
+author: "Annika Kufrovich"
+date: "February 7, 2018"
+output: html_document
+---
+
+#Genetic Diversity
+*This datset contains genetic diverity for different populations and compares it to the distance from East Africa*.
+
+```{r, echo=FALSE}
+library(Lock5Data)
+library(rmarkdown)
+data("GeneticDiversity")
+knitr::kable (GeneticDiversity,caption ="GeneticDiversity",padding =0)
+```
+
+```{r, echo=FALSE, results='asis'}
+stargazer::stargazer(GeneticDiversity, type="html",title= "GeneticDiversity")
+```
+
+Based on the data we can conclude that the average genetic diversity is *`r mean(GeneticDiversity$GeneticDiversity)`* with a standard deviation of *`r sd(GeneticDiversity$GeneticDiversity)`*.
+
+##Five Most Genetically Diverse Populations Worldwide
+This table depicts the five most genetically diverse countries worldwide from the dataset Genetic Diversity wi thin the lock5data package
+
+1. **BiakaPygmy**
+    + Genetic Diversity: `r sort(GeneticDiversity$GeneticDiversity, TRUE)[1]`
+    + Distance: `r sort(GeneticDiversity$Distance, TRUE)[1]`
+2. **Yoruba**
+    + Genetic Diversity: `r sort(GeneticDiversity$GeneticDiversity, TRUE)[2]`
+    + Distance: `r sort(GeneticDiversity$Distance, TRUE)[2]`
+3. **Mandenka**
+    + Genetic Diversity: `r sort(GeneticDiversity$GeneticDiversity, TRUE)[3]`
+    + Distance: `r sort(GeneticDiversity$Distance, TRUE)[3]`
+4. **Paestinian**
+    + Genetic Diversity: `r sort(GeneticDiversity$GeneticDiversity, TRUE)[4]`
+    + Distance: `r sort(GeneticDiversity$Distance, TRUE)[4]`
+5. **Makrani**
+    + Genetic Diversity: `r sort(GeneticDiversity$GeneticDiversity, TRUE)[5]`
+    + Distance: `r sort(GeneticDiversity$Distance, TRUE)[5]`
+
+```{r, echo=FALSE}
+summary(GeneticDiversity)
+```
+
+##Five Number Summaries
+Genetic Diverstiy: (`r quantile(GeneticDiversity$GeneticDiversity)`)  
+
+Distance from East Africa: (`r quantile(GeneticDiversity$Distance)`)
+
+    
