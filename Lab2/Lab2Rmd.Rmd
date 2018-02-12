@@ -1,0 +1,26 @@
+---
+title: "Lab2Rmd"
+author: "Annika Kufrovich"
+date: "February 9, 2018"
+output: html_document
+---
+
+```{r, echo=FALSE}
+cereal <- read.csv("Cereal.csv")
+```
+
+This dataset includes the nutrition and company information for different cereals.
+
+```{r, echo=FALSE}
+head(cereal)
+```
+
+```{r, echo=FALSE}
+plot(cereal$Sugar,cereal$Calories,main = "Relationhip between Sugar and Calories for cereal", xlab = "Sugars", ylab = "Calories")
+```
+
+```{r, echo=FALSE}
+summary(cereal$Sugar)
+summary(cereal$Calories)
+```
+
